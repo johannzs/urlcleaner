@@ -1,6 +1,6 @@
 <script>
 function formatURL(queryString) {
-  const params = new URLSearchParams(queryString);
+  const params = new URLSearchParams(queryString.replace(/\s/g, ''));
 [...params.entries()].forEach(([key, value]) => {
   if (!value) {
     params.delete(key);
