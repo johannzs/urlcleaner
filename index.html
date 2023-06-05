@@ -1,17 +1,41 @@
-<script>
-function formatURL(queryString) {
-  const params = new URLSearchParams(queryString.replace(/\s/g, ''));
-[...params.entries()].forEach(([key, value]) => {
-  if (!value) {
-    params.delete(key);
-  }
-});
-const cleaned = decodeURIComponent(params);
-document.getElementById('message').innerHTML = cleaned;
-}
-</script>
-
-
-<textarea name="url" id="url" cols="30" rows="10"></textarea>
-<button type="button" onclick="formatURL(document.getElementById('url').value)">Convert</button>
-<div id="message"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        * {
+          font-family: Arial, Helvetica, sans-serif;
+          text-align: center;  
+        }
+        button {
+            display: block;
+            margin: 70px auto;
+        }
+        div div {
+            border: 1px solid;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function formatURL(queryString) {
+          const params = new URLSearchParams(queryString.replace(/\s/g, ''));
+        [...params.entries()].forEach(([key, value]) => {
+          if (!value) {
+            params.delete(key);
+          }
+        });
+        const cleaned = decodeURIComponent(params);
+        document.getElementById('message').innerHTML = "<h2>Résultat :</h2>" + "<div>" + cleaned + "</div>";
+        }
+        </script>
+        <h1>Raccourcisseur de lien</h1>
+        <textarea name="url" id="url" cols="100" rows="10" placeholder="Entrez l'URL à raccourcir"></textarea>
+        <button type="button" onclick="formatURL(document.getElementById('url').value)">Raccourcir</button>
+        <div id="message"></div>
+</body>
+</html>
