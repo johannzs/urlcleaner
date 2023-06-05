@@ -1,0 +1,17 @@
+<script>
+function formatURL(queryString) {
+  const params = new URLSearchParams(queryString);
+[...params.entries()].forEach(([key, value]) => {
+  if (!value) {
+    params.delete(key);
+  }
+});
+const cleaned = decodeURIComponent(params);
+document.getElementById('message').innerHTML = cleaned;
+}
+</script>
+
+
+<textarea name="url" id="url" cols="30" rows="10"></textarea>
+<button type="button" onclick="formatURL(document.getElementById('url').value)">Convert</button>
+<div id="message"></div>
